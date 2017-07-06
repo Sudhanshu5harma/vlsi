@@ -3,10 +3,10 @@ input reset_n,
 input clk,
 input write_en,
 input [3:0]add_line,
-input wire sel0,sel1,sel2,sel3,sel4,sel5,sle6,sel7,sel8,sel9,sel10,sel11,sel12,sel13,sel14,sel15,
 input wire[31:0]data_in0,data_in1,data_in2,data_in3,data_in4,data_in5,data_in6,data_in7,data_in8,data_in9,data_in10,data_in11,data_in12,data_in13,data_in14,data_in15,
 output reg[31:0]data_out0,data_out1,data_out2,data_out3,data_out4,data_out5,data_out6,data_out7,data_out8,data_out9,data_out10,data_out11,data_out12,data_out13,data_out14,data_out15
 );
+wire sel0,sel1,sel2,sel3,sel4,sel5,sle6,sel7,sel8,sel9,sel10,sel11,sel12,sel13,sel14,sel15;
 
 assign sel0=(add_line == 4'b0000);
 assign sel1=(add_line == 4'b0001);
