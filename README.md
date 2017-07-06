@@ -1,5 +1,3 @@
-
-# AttendaceManagement
 # Verilog Code for 16 (32-bit register)
 ## Logic of the code 
 ![alt text](https://github.com/sudhanshu55/vlsi/blob/master/logic%20.JPG?raw=true)
