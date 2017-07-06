@@ -52,13 +52,13 @@ $display("clock started");
 end
 
 initial begin
-
-add_line = 4'b0010;
-reset_n = 0;
-write_en = 1'b1;
-data_in2 = 4'b0001;
+reset_n = 1'd0;
 #20 reset_n = 1'b1;
-
+@(posedge clk);  
+add_line = 4'b0010;
+  @(posedge clk);
+write_en = 1'd1;
+data_in2 = 32'hffff;
 if (data_out2 !== data_in2)
 begin
 $display("test 1 failed.");
