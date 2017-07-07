@@ -1,8 +1,9 @@
-module reg32_adtb();
-reg reset_n,write_en,clk;
+module reg32_ad_newtb();
+reg reset_n,write_en,clk,read_en;
 reg [3:0]write_line;
+reg [3:0]read_line;
 reg [31:0]data_in0,data_in1,data_in2,data_in3,data_in4,data_in5,data_in6,data_in7,data_in8,data_in9,data_in10,data_in11,data_in12,data_in13,data_in14,data_in15;
-wire [31:0]data_out0,data_out1,data_out2,data_out3,data_out4,data_out5,data_out6,data_out7,data_out8,data_out9,data_out10,data_out11,data_out12,data_out13,data_out14,data_out15;
+wire [31:0]data_out_bus;
 
 reg32_ad register (.reset_n(reset_n),
 .write_en(write_en),
@@ -39,10 +40,9 @@ reg32_ad register (.reset_n(reset_n),
 .data_out12(data_out12),
 .data_out13(data_out13),
 .data_out14(data_out14),
-.data_out15(data_out15)
+.data_out15(data_out15),
+.data_out_bus(data_out_bus)
 );
-
-
 initial begin
 clk=1'd0;
 forever begin
