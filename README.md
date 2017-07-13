@@ -23,13 +23,13 @@ In which we have taken a single line to give the address and check the data and 
 ```verilog
 assign sel0=(write_line == 4'b0000);
 ```
-so here we are comparing the address given to our address line and the address of original register as here we are using 16 register so we have 4 bit address hence 
-0th register - 0000 
-1st register - 0001 
-. 
-. 
-. 
-and so on 
+so here we are comparing the address given to our address line and the address of original register as here we are using 16 register so we have 4 bit address hence   
+0th register - 0000   
+1st register - 0001   
+.   
+.   
+.   
+and so on   
 so here we have a seperate line to give address for writing the data onto the register. So the logic would be as - 
 ![alt text](https://github.com/sudhanshu55/vlsi/blob/master/Readme%20content%20/Step2.jpg?raw=true)
 ```verilog
@@ -69,5 +69,5 @@ always@ (posedge clk or negedge reset_n)
   					end
 			end
 ```
-So it lay man language its like a mux before the output line and a demux before the input line.
+So it lay man language its like a mux before the output line and a demux before the input line. Hence the below given one is just a idea we will have 16 such register blocks. 
 ![alt text](https://github.com/sudhanshu55/vlsi/blob/master/Readme%20content%20/step3.png?raw=true)
