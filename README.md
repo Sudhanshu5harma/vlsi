@@ -23,15 +23,15 @@ In which we have taken a single line to give the address and check the data and 
 ```verilog
 assign sel0=(write_line == 4'b0000);
 ```
-so here we are comparing the address given to our address line and the address of original register as here we are using 16 register so we have 4 bit address hence
-0th register - 0000
-1st register - 0001
-.
-.
-.
-and so on
+so here we are comparing the address given to our address line and the address of original register as here we are using 16 register so we have 4 bit address hence 
+0th register - 0000 
+1st register - 0001 
+. 
+. 
+. 
+and so on 
+so here we have a seperate line to give address for writing the data onto the register. So the logic would be as - 
 ![alt text](https://github.com/sudhanshu55/vlsi/blob/master/Readme%20content%20/Step2.jpg?raw=true)
-so here we have a seperate line to give address for writing the data onto the register. So the logic would be as -
 ```verilog
 always@ (posedge clk or negedge reset_n)
 			begin
@@ -46,7 +46,7 @@ always@ (posedge clk or negedge reset_n)
   					end
 			end
 ```
-So this time we have to check for the write enable and which line is selected. Before writing the data onto the register. Improving this and making as proper register of 16 X 32 register we need to think about output also, So here comes the step 3.
+So this time we have to check for the write enable and which line is selected. Before writing the data onto the register. Improving this and making as proper register of 16X32 register we need to think about output also, So here comes the step 3. 
 ### Step 3
 For the data output thing we will have to mux the data and present it to one data out so that we can give the address to read out the data off particular register.
 ```verilog
