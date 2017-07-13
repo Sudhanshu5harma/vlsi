@@ -1,7 +1,7 @@
 # Verilog Code for 16X32 bit register
 ### Step 1
-In step one we just have a mux before D-flip flop which has its feed back coming back to mux.
 ![alt text](https://github.com/sudhanshu55/vlsi/blob/master/Readme%20content%20/Step1.jpg?raw=true)
+In step one we just have a mux before D-flip flop which has its feed back coming back to mux.
 Its just the basic idea how it works - When it loads data and when not.  As you can see when we have load line as zero(0) it doesn't load any data it just keep repeating previous data; and as soon as it goes one(1) it loads new data. We also have reset pin to reset the data out.
 ```verilog
 always@ (posedge clk or negedge reset_n)
@@ -30,7 +30,7 @@ so here we are comparing the address given to our address line and the address o
 .
 .
 and so on
-![alt text]("https://github.com/sudhanshu55/vlsi/blob/master/Readme%20content%20/Step2.jpg")
+![alt text](https://github.com/sudhanshu55/vlsi/blob/master/Readme%20content%20/Step2.jpg?raw=true)
 so here we have a seperate line to give address for writing the data onto the register. So the logic would be as -
 ```verilog
 always@ (posedge clk or negedge reset_n)
@@ -70,4 +70,4 @@ always@ (posedge clk or negedge reset_n)
 			end
 ```
 So it lay man language its like a mux before the output line and a demux before the input line.
-![alt text]("https://github.com/sudhanshu55/vlsi/blob/master/Readme%20content%20/step3.png")
+![alt text](https://github.com/sudhanshu55/vlsi/blob/master/Readme%20content%20/step3.png?raw=true)
