@@ -98,6 +98,7 @@ So it lay man language its like a mux before the output line and a demux before 
 
 -------
 
+-------
                                         Arbiter
 ###### Logic 
 Request are giving at the same time. Now there should be some system to decide whom to give the prefers first hence we need arbiter to solve this issue.  
@@ -150,4 +151,21 @@ client3:begin
 default: next_state=3'd0;
 endcase
 ```   
-We have used the simple logic of Switch and case for deciding the priority to serve the requests given. This is just the gist of code and the basic idea how the arbiter works. You can find the full code in the folder Verilog code  
+We have used the simple logic of Switch and case for deciding the priority to serve the requests given. This is just the gist of code and the basic idea how the arbiter works. You can find the full code in the folder Verilog code.  
+
+----
+## Interface Table    ---
+
+
+ | S. no.         | Name        | No. of bits | Input / Output | Description |
+| ------------ |-------------  | ---------- | -------------- | ----------- |
+| 1.          | Reset_n     | 1          |  Input         | Data out is reset when reset is zero |
+| 2.          | Clock       | 1    | Input     | Use as clock. At positive clock edge data is loaded |
+| 3.          | Request_1    | 1          | Input  | This is request 1 given in  |
+| 4.          | Request_2  | 1    | Input  | This is request 2 given in  |
+| 5.          | Request_3  |  1 | Input | This is request 3 given in |
+| 6.          | Request_4 |  1   | Input | This is request 4 given in |
+| 7.| Client_1|   1  | Output  | Ouput to request 1 |
+| 8. | Client_2 | 1 | Output | Ouput to request 2 |
+| 9. | Client_3 | 1 |Ouput   | Ouput to request 3 |
+| 10. | Client_4 | 1 |Output | Ouput to request 4 |
