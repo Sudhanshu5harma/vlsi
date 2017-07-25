@@ -1,10 +1,13 @@
 # Verilog Code for 16X32 bit register
+## Description 
+-----
 ### Step 1
 ![alt text](https://github.com/sudhanshu55/vlsi/blob/master/Readme%20content%20/Step1.jpg?raw=true)
 In step one we just have a mux before D-flip flop which has its feed back coming back to mux.
 Its just the basic idea how it works - When it loads data and when not.  As you can see when we have load line as zero(0) it doesn't load any data it just keep repeating previous data; and as soon as it goes one(1) it loads new data. We also have reset pin to reset the data out.
+
 ```verilog
-always@ (posedge clk or negedge reset_n)
+always@ (posedge clk or negedge reset_n) 
 begin
 if (!reset_n)
   begin
@@ -18,6 +21,8 @@ else
 end
 ```
 In step 1 we have taken 16 different load lines along with 16 different register output so the logic have to be improve and get a single line to write the data in any register so here comes the step 2.
+
+------
 ### Step 2
 In which we have taken a single line to give the address and check the data and then load or perform any desire operation.
 ```verilog
@@ -47,6 +52,8 @@ always@ (posedge clk or negedge reset_n)
 			end
 ```
 So this time we have to check for the write enable and which line is selected. Before writing the data onto the register. Improving this and making as proper register of 16X32 register we need to think about output also, So here comes the step 3. 
+
+-------
 ### Step 3
 For the data output thing we will have to mux the data and present it to one data out so that we can give the address to read out the data off particular register.
 ```verilog
@@ -71,3 +78,18 @@ always@ (posedge clk or negedge reset_n)
 ```
 So it lay man language its like a mux before the output line and a demux before the input line. Hence the below given one is just a idea we will have 16 such register blocks. 
 ![alt text](https://github.com/sudhanshu55/vlsi/blob/master/Readme%20content%20/step3.png?raw=true)
+
+---------
+## Interface Table      
+
+
+| S. no.      | Name       | No. of bits | Input / Output | Description |
+| ----------  |-------------| ---------- | -------------- | ----------- |
+| 1.          | Reset_n     | 1          |  Input         | Data out is reset when reset is zero |
+| 2.          | Clock       | 1    | Input     | Use as clock. At positive clock edge data is loaded |
+| 3.          | Write_en    | 1          | Input          | Write the data if write enable is high  |
+| 4.          | Write_line  | 4      | Input  | Address of Register on which data has to written |
+| 5.          | Read_en    |  1 | Input | Read the data if Read enable is high |
+| 6.          | Read_line  |  4   | Input | Address of Register whose data to read |
+| 7.| Data_in |   32  | Input | Data_in lines which load the data when read enable is high and the read line address matches 
+| 8. | Data_out | 32 | Output | Data_out line are which give data out when write enable is high and write line address is matches | 
