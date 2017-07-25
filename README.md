@@ -1,11 +1,13 @@
-# Verilog Code for 16X32 bit register
-## Description 
------
-### Step 1
+## Verilog design of Register and Arbiter 
+----------------
+
+     
+                                           16 X 32 Register
+###### Description ---
+###### Step 1
 ![alt text](https://github.com/sudhanshu55/vlsi/blob/master/Readme%20content%20/Step1.jpg?raw=true)
 In step one we just have a mux before D-flip flop which has its feed back coming back to mux.
 Its just the basic idea how it works - When it loads data and when not.  As you can see when we have load line as zero(0) it doesn't load any data it just keep repeating previous data; and as soon as it goes one(1) it loads new data. We also have reset pin to reset the data out.
-
 ```verilog
 always@ (posedge clk or negedge reset_n) 
 begin
@@ -80,11 +82,11 @@ So it lay man language its like a mux before the output line and a demux before 
 ![alt text](https://github.com/sudhanshu55/vlsi/blob/master/Readme%20content%20/step3.png?raw=true)
 
 ---------
-## Interface Table      
+## Interface Table    ---  
 
 
-| S. no.      | Name       | No. of bits | Input / Output | Description |
-| ----------  |-------------| ---------- | -------------- | ----------- |
+| S. no.         | Name       | No. of bits | Input / Output | Description |
+| ------------ |-------------| ---------- | -------------- | ----------- |
 | 1.          | Reset_n     | 1          |  Input         | Data out is reset when reset is zero |
 | 2.          | Clock       | 1    | Input     | Use as clock. At positive clock edge data is loaded |
 | 3.          | Write_en    | 1          | Input          | Write the data if write enable is high  |
@@ -93,3 +95,59 @@ So it lay man language its like a mux before the output line and a demux before 
 | 6.          | Read_line  |  4   | Input | Address of Register whose data to read |
 | 7.| Data_in |   32  | Input | Data_in lines which load the data when read enable is high and the read line address matches 
 | 8. | Data_out | 32 | Output | Data_out line are which give data out when write enable is high and write line address is matches | 
+
+-------
+
+                                        Arbiter
+###### Logic 
+Request are giving at the same time. Now there should be some system to decide whom to give the prefers first hence we need arbiter to solve this issue.  
+In the below timing diagram we can see the two request coming at the same time now we will see the request in the posedge and reslove the first request first at next posedge then at next posedge we will make the request low or we can even wait for the user to give end of operation signal to make it to zero. As this is sequential circuit so every action will take place in next clock cycle which is next posedge 
+###### Timing Diagram
+![alt text](https://github.com/sudhanshu55/vlsi/blob/master/Readme%20content%20/arbiter.jpg?raw=true)  
+###### Code
+
+```verilog 
+case (state)
+IDLE:begin
+         if(req0)
+           next_state=GNT0;
+         else if(req1)
+           next_state=GNT1;
+         else if(req2)
+           next_state=GNT2;
+         else if(req3)
+           next_state=GNT3;
+         else
+           next_state=IDLE;
+end
+client0:begin
+         if(req0)
+           next_state=GNT0;
+         else
+           next_state=IDLE;
+end
+
+client1:begin
+         if(req1)
+           next_state=GNT1;
+         else
+           next_state=IDLE;
+end
+
+client2:begin
+         if(req2)
+           next_state=GNT2;
+         else
+           next_state=IDLE;
+end
+
+client3:begin
+         if(req3)
+           next_state=GNT3;
+         else
+           next_state=IDLE;
+    end
+default: next_state=3'd0;
+endcase
+```   
+We have used the simple logic of Switch and case for deciding the priority to serve the requests given. This is just the gist of code and the basic idea how the arbiter works. You can find the full code in the folder Verilog code  
